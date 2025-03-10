@@ -45,6 +45,18 @@
         h2, h3, p {
             font-size: 24px;
         }
+        .copy-btn {
+            background-color: white;
+            color: black;
+            font-size: 18px;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .dark-mode {
+            background: black !important;
+            color: white !important;
+        }
     </style>
 </head>
 <body>
@@ -53,21 +65,43 @@
         <input type="password" id="password" placeholder="Nhập mật khẩu">
         <button onclick="checkPassword()">Xác nhận</button>
         <p id="error" style="color: red;"></p>
+        <button onclick="toggleDarkMode()">Bật/Tắt Dark Mode</button>
         <div id="content">
             <h3>Danh sách tài khoản:</h3>
-            <p>Tài Khoản: phanhoangna</p>
-            <p>Mật Khẩu: phanhoangna</p>
+            <p id="account">Tài Khoản: phanhoangna</p>
+            <button class="copy-btn" onclick="copyToClipboard('account')">Sao chép</button>
+            <p id="passwordDisplay">Mật Khẩu: phanhoangna</p>
+            <button class="copy-btn" onclick="copyToClipboard('passwordDisplay')">Sao chép</button>
         </div>
     </div>
     <script>
         function checkPassword() {
             var inputPassword = document.getElementById('password').value;
-            var correctPassword = "phanhoangna"; // Thay đổi mật khẩu tại đây
+            var correctPassword = "phanhoangna"; 
             if (inputPassword === correctPassword) {
                 document.getElementById('content').style.display = 'block';
                 document.getElementById('error').innerText = '';
             } else {
                 document.getElementById('error').innerText = 'Mật khẩu sai!';
+            }
+        }
+        
+        function copyToClipboard(id) {
+            var text = document.getElementById(id).innerText.split(': ')[1];
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Đã sao chép: " + text);
+            });
+        }
+        
+        function toggleDarkMode() {
+            var body = document.body;
+            body.classList.toggle("dark-mode");
+            localStorage.setItem("darkMode", body.classList.contains("dark-mode"));
+        }
+        
+        window.onload = function() {
+            if (localStorage.getItem("darkMode") === "true") {
+                document.body.classList.add("dark-mode");
             }
         }
     </script>
