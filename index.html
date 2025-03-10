@@ -61,6 +61,7 @@
             font-size: 18px;
             cursor: pointer;
             color: white;
+            margin-left: 10px;
         }
         .dark-mode {
             background: white !important;
@@ -103,6 +104,16 @@
             transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
             margin-top: 10px;
             transform: translateY(0);
+        }
+        .effect {
+            position: absolute;
+            top: -10px;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
         }
     </style>
 </head>
@@ -154,10 +165,18 @@
             }, 2000);
         }
         
-        function toggleDarkMode() {
-            var body = document.body;
-            var isDarkMode = body.classList.toggle("dark-mode");
-            localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
+        function createSeasonalEffect() {
+            let month = new Date().getMonth() + 1;
+            let symbol = month >= 3 && month <= 5 ? "🌸" : month >= 6 && month <= 8 ? "☀" : month >= 9 && month <= 11 ? "🍂" : "❄";
+            for (let i = 0; i < 50; i++) {
+                let effect = document.createElement("div");
+                effect.className = "effect";
+                effect.innerHTML = symbol;
+                effect.style.left = Math.random() * 100 + "vw";
+                effect.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                effect.style.fontSize = (Math.random() * 10 + 10) + "px";
+                document.body.appendChild(effect);
+            }
         }
     </script>
 </body>
