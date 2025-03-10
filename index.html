@@ -9,8 +9,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
-            background: url('https://wallpapers.com/images/hd/netflix-background-gs7hjuwvv2g0e9fj.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background: black;
             color: white;
         }
         .container {
@@ -19,6 +18,7 @@
             border-radius: 10px;
             display: inline-block;
             margin-top: 50px;
+            position: relative;
         }
         #content {
             display: none;
@@ -63,16 +63,19 @@
             font-size: 30px;
             cursor: pointer;
             color: white;
+            position: absolute;
+            top: 10px;
+            right: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
         <h2>Nhập Mật Khẩu Để Xem Thông Tin Tài Khoản</h2>
         <input type="password" id="password" placeholder="Nhập mật khẩu">
         <button onclick="checkPassword()">Xác nhận</button>
         <p id="error" style="color: red;"></p>
-        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
         <div id="content">
             <h3>Danh sách tài khoản:</h3>
             <p id="account">Tài Khoản: phanhoangna</p>
