@@ -57,6 +57,13 @@
             background: black !important;
             color: white !important;
         }
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -65,7 +72,7 @@
         <input type="password" id="password" placeholder="Nhập mật khẩu">
         <button onclick="checkPassword()">Xác nhận</button>
         <p id="error" style="color: red;"></p>
-        <button onclick="toggleDarkMode()">Bật/Tắt Dark Mode</button>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
         <div id="content">
             <h3>Danh sách tài khoản:</h3>
             <p id="account">Tài Khoản: phanhoangna</p>
