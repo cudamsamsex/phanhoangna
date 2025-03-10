@@ -76,10 +76,15 @@
         .dark-mode .dark-mode-toggle {
             color: black;
         }
-        .toast {
+        .toast-container {
             position: fixed;
             top: 10px;
             right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .toast {
             background-color: green;
             color: white;
             padding: 10px 20px;
@@ -87,7 +92,7 @@
             opacity: 0.9;
             z-index: 1000;
             transition: opacity 0.5s ease-in-out;
-            margin-top: 5px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -104,7 +109,7 @@
             <p id="passwordDisplay">Mật Khẩu: phanhoangna <button class="copy-btn" onclick="copyToClipboard('passwordDisplay')">📋</button></p>
         </div>
     </div>
-    <div id="toast-container" style="position: fixed; top: 10px; right: 10px; display: flex; flex-direction: column; align-items: flex-end;"></div>
+    <div id="toast-container" class="toast-container"></div>
     <script>
         function checkPassword() {
             var inputPassword = document.getElementById('password').value;
@@ -130,6 +135,7 @@
             toast.className = "toast";
             toast.innerText = message;
             toastContainer.appendChild(toast);
+            
             setTimeout(() => {
                 toast.style.opacity = "0";
                 setTimeout(() => toast.remove(), 500);
