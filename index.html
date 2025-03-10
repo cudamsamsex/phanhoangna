@@ -48,7 +48,7 @@
             color: white;
             cursor: pointer;
         }
-        h2, h3, p {
+        h3, p {
             font-size: 24px;
         }
         .copy-btn {
@@ -112,16 +112,15 @@
 </head>
 <body>
     <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
-    <div class="container">
-        <h2>Nhập Mật Khẩu Để Xem Thông Tin Tài Khoản</h2>
+    <div class="container" id="login-container">
         <input type="password" id="password" placeholder="Nhập mật khẩu">
         <button onclick="checkPassword()">Xác nhận</button>
         <p id="error" style="color: red;"></p>
-        <div id="content">
-            <h3>Danh sách tài khoản:</h3>
-            <p id="account">Tài Khoản: phanhoangna <button class="copy-btn" onclick="copyToClipboard('account')">📋</button></p>
-            <p id="passwordDisplay">Mật Khẩu: phanhoangna <button class="copy-btn" onclick="copyToClipboard('passwordDisplay')">📋</button></p>
-        </div>
+    </div>
+    <div id="content">
+        <h3>Danh sách tài khoản:</h3>
+        <p id="account">Tài Khoản: phanhoangna <button class="copy-btn" onclick="copyToClipboard('account')">📋</button></p>
+        <p id="passwordDisplay">Mật Khẩu: phanhoangna <button class="copy-btn" onclick="copyToClipboard('passwordDisplay')">📋</button></p>
     </div>
     <div id="toast-container" class="toast-container"></div>
     <script>
@@ -130,9 +129,7 @@
             var correctPassword = "phanhoangna"; 
             if (inputPassword === correctPassword) {
                 document.getElementById('content').style.display = 'block';
-                document.getElementById('password').style.display = 'none';
-                document.querySelector('button').style.display = 'none';
-                document.getElementById('error').innerText = '';
+                document.getElementById('login-container').style.display = 'none';
             } else {
                 document.getElementById('error').innerText = 'Mật khẩu sai!';
             }
