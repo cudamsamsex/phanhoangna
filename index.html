@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chia sẻ tài khoản game</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -118,20 +119,10 @@
             margin-top: 10px;
             transform: translateY(0);
         }
-        .effect {
-            position: absolute;
-            top: -10px;
-            pointer-events: none;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
     </style>
 </head>
 <body>
-    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
     <div class="container" id="login-container">
         <h2>Nhập Mật Khẩu Để Xem Thông Tin</h2>
         <input type="password" id="password" placeholder="Nhập mật khẩu">
@@ -140,8 +131,8 @@
     </div>
     <div id="content">
         <h3>Danh sách tài khoản:</h3>
-        <p id="account">Tài Khoản: phanhoangna <button class="copy-btn" onclick="copyToClipboard('account')"><i class="fa-solid fa-copy"></i></button></p>
-        <p id="passwordDisplay">Mật Khẩu: phanhoangna <button class="copy-btn" onclick="copyToClipboard('passwordDisplay')"><i class="fa-solid fa-copy"></i></button></p>
+        <p id="account">Tài Khoản: phanhoangna <button class="copy-btn" onclick="copyToClipboard('account')"><i class="fas fa-copy"></i></button></p>
+        <p id="passwordDisplay">Mật Khẩu: phanhoangna <button class="copy-btn" onclick="copyToClipboard('passwordDisplay')"><i class="fas fa-copy"></i></button></p>
     </div>
     <div id="toast-container" class="toast-container"></div>
     <script>
@@ -151,7 +142,6 @@
             if (inputPassword === correctPassword) {
                 document.getElementById('content').style.display = 'block';
                 document.getElementById('login-container').style.display = 'none';
-                createSeasonalEffect();
             } else {
                 document.getElementById('error').innerText = 'Mật khẩu sai!';
             }
