@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chia sẻ tài khoản game</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,6 +33,9 @@
             padding: 20px;
             border-radius: 10px;
             border: 2px solid white;
+            width: 350px;
+            margin-left: auto;
+            margin-right: auto;
         }
         input, button {
             padding: 15px;
@@ -56,6 +60,7 @@
             border: none;
             font-size: 18px;
             cursor: pointer;
+            color: white;
         }
         .dark-mode {
             background: white !important;
@@ -95,32 +100,24 @@
             border-radius: 5px;
             opacity: 0.9;
             z-index: 1000;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
             margin-top: 10px;
-        }
-        .effect {
-            position: absolute;
-            top: -10px;
-            pointer-events: none;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
     <div class="container" id="login-container">
+        <h2>Nhập Mật Khẩu Để Xem Thông Tin</h2>
         <input type="password" id="password" placeholder="Nhập mật khẩu">
         <button onclick="checkPassword()">Xác nhận</button>
         <p id="error" style="color: red;"></p>
     </div>
     <div id="content">
         <h3>Danh sách tài khoản:</h3>
-        <p id="account">Tài Khoản: phanhoangna <button class="copy-btn" onclick="copyToClipboard('account')">📋</button></p>
-        <p id="passwordDisplay">Mật Khẩu: phanhoangna <button class="copy-btn" onclick="copyToClipboard('passwordDisplay')">📋</button></p>
+        <p id="account">Tài Khoản: phanhoangna <button class="copy-btn" onclick="copyToClipboard('account')"><i class="fa-solid fa-copy"></i></button></p>
+        <p id="passwordDisplay">Mật Khẩu: phanhoangna <button class="copy-btn" onclick="copyToClipboard('passwordDisplay')"><i class="fa-solid fa-copy"></i></button></p>
     </div>
     <div id="toast-container" class="toast-container"></div>
     <script>
@@ -130,6 +127,7 @@
             if (inputPassword === correctPassword) {
                 document.getElementById('content').style.display = 'block';
                 document.getElementById('login-container').style.display = 'none';
+                createSeasonalEffect();
             } else {
                 document.getElementById('error').innerText = 'Mật khẩu sai!';
             }
@@ -151,6 +149,7 @@
             
             setTimeout(() => {
                 toast.style.opacity = "0";
+                toast.style.transform = "translateY(-10px)";
                 setTimeout(() => toast.remove(), 500);
             }, 2000);
         }
@@ -159,27 +158,6 @@
             var body = document.body;
             var isDarkMode = body.classList.toggle("dark-mode");
             localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
-        }
-        
-        window.onload = function() {
-            if (localStorage.getItem("darkMode") === "enabled") {
-                document.body.classList.add("dark-mode");
-            }
-            createSeasonalEffect();
-        }
-        
-        function createSeasonalEffect() {
-            let month = new Date().getMonth() + 1;
-            let symbol = month >= 3 && month <= 5 ? "🌸" : month >= 6 && month <= 8 ? "☀" : month >= 9 && month <= 11 ? "🍂" : "❄";
-            for (let i = 0; i < 50; i++) {
-                let effect = document.createElement("div");
-                effect.className = "effect";
-                effect.innerHTML = symbol;
-                effect.style.left = Math.random() * 100 + "vw";
-                effect.style.animationDuration = (Math.random() * 3 + 2) + "s";
-                effect.style.fontSize = (Math.random() * 10 + 10) + "px";
-                document.body.appendChild(effect);
-            }
         }
     </script>
 </body>
