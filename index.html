@@ -11,6 +11,7 @@
             margin: 50px;
             background: black;
             color: white;
+            transition: background 0.3s, color 0.3s;
         }
         .container {
             background: rgba(0, 0, 0, 0.8);
@@ -54,8 +55,12 @@
             cursor: pointer;
         }
         .dark-mode {
-            background: black !important;
-            color: white !important;
+            background: white !important;
+            color: black !important;
+        }
+        .dark-mode .container, .dark-mode #content {
+            background: rgba(255, 255, 255, 0.9) !important;
+            color: black !important;
         }
         .dark-mode-toggle {
             background: none;
@@ -66,6 +71,9 @@
             position: absolute;
             top: 10px;
             right: 10px;
+        }
+        .dark-mode .dark-mode-toggle {
+            color: black;
         }
     </style>
 </head>
@@ -105,12 +113,12 @@
         
         function toggleDarkMode() {
             var body = document.body;
-            body.classList.toggle("dark-mode");
-            localStorage.setItem("darkMode", body.classList.contains("dark-mode"));
+            var isDarkMode = body.classList.toggle("dark-mode");
+            localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
         }
         
         window.onload = function() {
-            if (localStorage.getItem("darkMode") === "true") {
+            if (localStorage.getItem("darkMode") === "enabled") {
                 document.body.classList.add("dark-mode");
             }
         }
