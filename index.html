@@ -15,16 +15,17 @@
             position: relative;
         }
         .container {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(30, 30, 30, 0.95);
             padding: 30px;
             border-radius: 10px;
             display: inline-block;
             margin-top: 50px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
         }
         #content {
             display: none;
             margin-top: 20px;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(40, 40, 40, 0.95);
             padding: 20px;
             border-radius: 10px;
         }
@@ -61,6 +62,7 @@
         .dark-mode .container, .dark-mode #content {
             background: rgba(255, 255, 255, 0.9) !important;
             color: black !important;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
         }
         .dark-mode-toggle {
             background: none;
@@ -70,7 +72,7 @@
             color: white;
             position: fixed;
             top: 10px;
-            right: 10px;
+            left: 10px;
             z-index: 1000;
         }
         .dark-mode .dark-mode-toggle {
@@ -80,13 +82,13 @@
             position: fixed;
             top: 10px;
             right: 10px;
-            background-color: #333;
+            background-color: green;
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
-            display: none;
             opacity: 0.9;
             z-index: 1000;
+            transition: transform 0.3s ease-in-out, opacity 0.5s ease-in-out;
         }
     </style>
 </head>
@@ -103,7 +105,7 @@
             <p id="passwordDisplay">Mật Khẩu: phanhoangna <button class="copy-btn" onclick="copyToClipboard('passwordDisplay')">📋</button></p>
         </div>
     </div>
-    <div id="toast-container"></div>
+    <div id="toast-container" style="position: fixed; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 10px;"></div>
     <script>
         function checkPassword() {
             var inputPassword = document.getElementById('password').value;
@@ -129,9 +131,10 @@
             toast.className = "toast";
             toast.innerText = message;
             toastContainer.appendChild(toast);
-            toast.style.display = "block";
+            toast.style.transform = "translateY(0)";
             setTimeout(() => {
                 toast.style.opacity = "0";
+                toast.style.transform = "translateY(-20px)";
                 setTimeout(() => toast.remove(), 500);
             }, 2000);
         }
