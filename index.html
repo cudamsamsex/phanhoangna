@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chia sẻ tài khoản game</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,11 +28,12 @@
         #content {
             display: none;
             margin-top: 20px;
-            background: rgba(40, 40, 40, 0.95);
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid white;
-            width: 300px;
+            background: rgba(50, 50, 50, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px solid #ff0000;
+            box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.5);
+            width: 350px;
             margin: auto;
         }
         input, button {
@@ -51,16 +51,30 @@
             color: white;
             cursor: pointer;
         }
-        h3, p {
-            font-size: 20px;
+        h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ff0000;
+        }
+        p {
+            font-size: 22px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
         }
         .copy-btn {
             background: none;
             border: none;
-            font-size: 18px;
+            font-size: 24px;
             cursor: pointer;
             color: white;
-            margin-left: 10px;
+        }
+        .copy-btn:hover {
+            color: #ff0000;
         }
         .dark-mode {
             background: white !important;
@@ -162,20 +176,6 @@
                 toast.style.transform = "translateY(-10px)";
                 setTimeout(() => toast.remove(), 500);
             }, 2000);
-        }
-        
-        function createSeasonalEffect() {
-            let month = new Date().getMonth() + 1;
-            let symbol = month >= 3 && month <= 5 ? "🌸" : month >= 6 && month <= 8 ? "☀" : month >= 9 && month <= 11 ? "🍂" : "❄";
-            for (let i = 0; i < 50; i++) {
-                let effect = document.createElement("div");
-                effect.className = "effect";
-                effect.innerHTML = symbol;
-                effect.style.left = Math.random() * 100 + "vw";
-                effect.style.animationDuration = (Math.random() * 3 + 2) + "s";
-                effect.style.fontSize = (Math.random() * 10 + 10) + "px";
-                document.body.appendChild(effect);
-            }
         }
     </script>
 </body>
