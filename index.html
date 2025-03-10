@@ -51,7 +51,7 @@
             color: black;
             font-size: 18px;
             padding: 10px;
-            margin-top: 10px;
+            margin-left: 10px;
             cursor: pointer;
         }
         .dark-mode {
@@ -75,6 +75,18 @@
         .dark-mode .dark-mode-toggle {
             color: black;
         }
+        .toast {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            opacity: 0.9;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -86,12 +98,11 @@
         <p id="error" style="color: red;"></p>
         <div id="content">
             <h3>Danh sách tài khoản:</h3>
-            <p id="account">Tài Khoản: phanhoangna</p>
-            <button class="copy-btn" onclick="copyToClipboard('account')">Sao chép</button>
-            <p id="passwordDisplay">Mật Khẩu: phanhoangna</p>
-            <button class="copy-btn" onclick="copyToClipboard('passwordDisplay')">Sao chép</button>
+            <p id="account">Tài Khoản: phanhoangna <button class="copy-btn" onclick="copyToClipboard('account')">📋</button></p>
+            <p id="passwordDisplay">Mật Khẩu: phanhoangna <button class="copy-btn" onclick="copyToClipboard('passwordDisplay')">📋</button></p>
         </div>
     </div>
+    <div id="toast-container"></div>
     <script>
         function checkPassword() {
             var inputPassword = document.getElementById('password').value;
@@ -107,8 +118,21 @@
         function copyToClipboard(id) {
             var text = document.getElementById(id).innerText.split(': ')[1];
             navigator.clipboard.writeText(text).then(() => {
-                alert("Đã sao chép: " + text);
+                showToast("Đã sao chép: " + text);
             });
+        }
+        
+        function showToast(message) {
+            var toastContainer = document.getElementById("toast-container");
+            var toast = document.createElement("div");
+            toast.className = "toast";
+            toast.innerText = message;
+            toastContainer.appendChild(toast);
+            toast.style.display = "block";
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                setTimeout(() => toast.remove(), 500);
+            }, 2000);
         }
         
         function toggleDarkMode() {
