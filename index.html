@@ -31,6 +31,7 @@
             background: rgba(40, 40, 40, 0.95);
             padding: 20px;
             border-radius: 10px;
+            border: 2px solid white;
         }
         input, button {
             padding: 15px;
@@ -97,12 +98,9 @@
             transition: opacity 0.5s ease-in-out;
             margin-top: 10px;
         }
-        .snowflake {
+        .effect {
             position: absolute;
             top: -10px;
-            color: white;
-            font-size: 10px;
-            opacity: 0.8;
             pointer-events: none;
             animation: fall linear infinite;
         }
@@ -132,6 +130,8 @@
             var correctPassword = "phanhoangna"; 
             if (inputPassword === correctPassword) {
                 document.getElementById('content').style.display = 'block';
+                document.getElementById('password').style.display = 'none';
+                document.querySelector('button').style.display = 'none';
                 document.getElementById('error').innerText = '';
             } else {
                 document.getElementById('error').innerText = 'Mật khẩu sai!';
@@ -168,18 +168,20 @@
             if (localStorage.getItem("darkMode") === "enabled") {
                 document.body.classList.add("dark-mode");
             }
-            createSnowEffect();
+            createSeasonalEffect();
         }
         
-        function createSnowEffect() {
+        function createSeasonalEffect() {
+            let month = new Date().getMonth() + 1;
+            let symbol = month >= 3 && month <= 5 ? "🌸" : month >= 6 && month <= 8 ? "☀" : month >= 9 && month <= 11 ? "🍂" : "❄";
             for (let i = 0; i < 50; i++) {
-                let snowflake = document.createElement("div");
-                snowflake.className = "snowflake";
-                snowflake.innerHTML = "❄";
-                snowflake.style.left = Math.random() * 100 + "vw";
-                snowflake.style.animationDuration = (Math.random() * 3 + 2) + "s";
-                snowflake.style.fontSize = (Math.random() * 10 + 10) + "px";
-                document.body.appendChild(snowflake);
+                let effect = document.createElement("div");
+                effect.className = "effect";
+                effect.innerHTML = symbol;
+                effect.style.left = Math.random() * 100 + "vw";
+                effect.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                effect.style.fontSize = (Math.random() * 10 + 10) + "px";
+                document.body.appendChild(effect);
             }
         }
     </script>
