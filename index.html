@@ -9,15 +9,35 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
+            background: url('https://assets.nflxext.com/ffe/siteui/vlv3/063b1837-c06e-40f5-bbbc-dff06f8492c7/885c8ad3-7de7-4dc9-a0e8-92c2f5b49dc8/VN-en-20240108-popsignuptwoweeks-perspective_alpha_website_large.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
         }
         #content {
             display: none;
             margin-top: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        input {
+            width: 200px;
+        }
+        button {
+            background-color: red;
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h2>Nhập Mật Khẩu Để Xem Thông Tin Tài Khoản</h2>
+    <h2>Nhập mật khẩu để xem tài khoản game</h2>
     <input type="password" id="password" placeholder="Nhập mật khẩu">
     <button onclick="checkPassword()">Xác nhận</button>
     <p id="error" style="color: red;"></p>
