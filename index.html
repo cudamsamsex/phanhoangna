@@ -12,6 +12,7 @@
             background: black;
             color: white;
             transition: background 0.3s, color 0.3s;
+            position: relative;
         }
         .container {
             background: rgba(0, 0, 0, 0.8);
@@ -19,7 +20,6 @@
             border-radius: 10px;
             display: inline-block;
             margin-top: 50px;
-            position: relative;
         }
         #content {
             display: none;
@@ -68,9 +68,10 @@
             font-size: 30px;
             cursor: pointer;
             color: white;
-            position: absolute;
+            position: fixed;
             top: 10px;
             right: 10px;
+            z-index: 1000;
         }
         .dark-mode .dark-mode-toggle {
             color: black;
@@ -90,8 +91,8 @@
     </style>
 </head>
 <body>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
     <div class="container">
-        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
         <h2>Nhập Mật Khẩu Để Xem Thông Tin Tài Khoản</h2>
         <input type="password" id="password" placeholder="Nhập mật khẩu">
         <button onclick="checkPassword()">Xác nhận</button>
